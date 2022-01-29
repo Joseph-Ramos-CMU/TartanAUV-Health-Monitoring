@@ -60,7 +60,7 @@ class AlarmClient():
 
     def __server_to_client_sub_callback(self, msg : ServerToClientAlarmMsg) -> None:
         recievedReport = AlarmReport.msgToAlarmReport(msg)
-        print("MYNOTE1: recievedReport: " + str(recievedReport))
+        print("MYNOTE1: AlarmClient: recievedReport: " + str(recievedReport))
 
     def set(self, id : int) -> None:
         """Equivalent to set(self, id, True)"""
@@ -82,7 +82,7 @@ class AlarmClient():
             result : bool = self.report.set(id, value)
         finally:
             self.reportLock.release()
-        # TODO add the service call
+        # TODO add the service call, as part of a separete thread
 
     def clear(self, id : int) -> None:
         """Equivalent to set(self, id, False)"""
@@ -115,3 +115,19 @@ class AlarmClient():
         # https://stackoverflow.com/questions/3310049/proper-use-of-mutexes-in-python
         while True:
             pass
+
+    def shutdown(self) -> None:
+        """
+        Shuts down the extra thread(s) used by this client.
+
+        Should be called before the object using this client falls out of scope in order to avoid a resource leak
+        """
+        pass
+
+    def main():
+        rospy.init_node('client_node_test')
+        client = AlarmClient()
+        print("AlarmClient started")
+        rospy.spin() # Starts the timers: never returns: it will just infinitely
+        # loop and run the self.go function we passed to the timer
+        print("Error in AlarmClient")

@@ -1,0 +1,5 @@
+int8 alarmValue
+int32 alarmId
+time sendTime
+---
+health_monitor/ServerToClientAlarmMsg newAlarm

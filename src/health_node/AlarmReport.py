@@ -68,8 +68,20 @@ class AlarmReport():
             alarmInt = alarmInt & bitmask
         self.alarms[index] = alarmInt
 
-    def toIntList(self) -> 'list[int]':
-        return self.alarms
+    # def toIntList(self) -> 'list[int]':
+    #     return self.alarms
+
+    def toBoolList(self):
+        """
+        Returns the Alarm Status as a list of booleans
+        """
+        pass
+
+    def toDictionary(self):
+        """
+        Returns the AlarmStatues as a query-able dictionary
+        """
+        pass
 
     def getHighestAlarmLevel() -> AlarmLevel:
         """

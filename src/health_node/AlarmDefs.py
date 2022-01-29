@@ -14,6 +14,7 @@ class AlarmDefs():
     # The total number of alarms for the sub: should be a multiple of 32
     NUM_ALARMS : int = 32
     SERVER_TO_CLIENT_PUB_SUB_ID="alarm_server_to_client"
+    ALARM_SERVER_NODE_NAME='alarm_server'
 
     """
     Each Alarm should have its own constants in the following form:
